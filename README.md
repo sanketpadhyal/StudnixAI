@@ -1,2 +1,2 @@
-# StudyGist
+# StudnixAI 📘
 WORK DONE WITH BACKEND
