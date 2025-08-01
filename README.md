@@ -17,10 +17,6 @@ Welcome to **StudnixAI**, a sleek and intelligent web-based toolkit made especia
 - Focus better by tracking your study sessions.
 - Simple and cute layout, perfect for Pomodoro or deep work sessions.
 
-### 📝 Note Taker
-- Quickly jot down ideas, thoughts, or class notes.
-- Fast, minimal UI with a dark theme that’s easy on the eyes.
-
 ### 🎶 Live Music Tab Display (Coming Soon)
 - Shows currently playing YouTube/Chrome music in real time.
 - Adds a chill vibe to your study flow.
