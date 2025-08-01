@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="assets/favicon.png"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>StudnixAI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style/style.css">
+</head>
+<body class="app-body">
+  <header class="navbar">
+    <div class="logo-glass">
+      <div class="logo">
+        <strong>
+          <span class="logo-blue">Studnix</span><span class="logo-red">AI</span> 📘
+        </strong>
+      </div>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="tool.html">Features</a>
+      <a href="https://mail.google.com/mail/?view=cm&to=sanketpadhyal3@gmail.com&su=StudnixAI%20Related%20Mail" target="_blank" class="btn-purple">Contact Us</a>
+    </nav>
+  </header>
+
+<!-- Create Your Own Layout Button -->
+<section class="create-layout-section">
+  <button class="create-layout-btn" onclick="toggleRightCard()">
+    ✨ Create Your Own Layout
+  </button>
+</section>
+
+<section class="features-messy">
+  <a href="stopwatch.html" class="feature-box"><strong><i>STOPWATCH</i> ⏱️</strong></a>
+  <a href="timer.html" class="feature-box"><strong><i>TIMER</i> ⏳</strong></a>
+  <a href="ai.html" class="feature-box"><strong><i>ASK A.I</i> 👻</strong></a>
+</section>
+
+<!-- Card -->
+<div id="layoutCard" class="layout-right-card">
+  <div class="layout-card-header">
+    <h2 class="build-layout-heading"><strong>Currently Unavailable, but it's not essential for core features.</strong></h2>
+    <button class="close-card-btn" onclick="toggleRightCard()">✕</button>
+  </div>
+  <div class="layout-card-options">
+    <label><input type="checkbox" id="cbStopwatch"> ⏱️ Stopwatch</label>
+    <label><input type="checkbox" id="cbTimer"> ⏳ Timer</label>
+    <label><input type="checkbox" id="cbAI"> 👻 Ask AI</label>
+  </div>
+  <button class="apply-layout-btn" onclick="applyLayout()">🚀 Launch Layout</button>
+</div>
+
+
+
+<script>
+function toggleRightCard() {
+  const card = document.getElementById("layoutCard");
+  card.classList.toggle("active");
+}
+
+function applyLayout() {
+  const sw = document.getElementById("cbStopwatch").checked;
+  const ti = document.getElementById("cbTimer").checked;
+  const ai = document.getElementById("cbAI").checked;
+
+  // Logic to match layout pages
+  if (sw && ti && ai) window.location.href = "#";
+  else if (sw && ai && !ti) window.location.href = "#";
+  else if (sw && ti && !ai) window.location.href = "#";
+  else if (ti && ai && !sw) window.location.href = "#";
+  else alert("Please select at least two features!");
+
+  toggleRightCard(); // Close card after applying
+}
+
+    window.addEventListener("load", () => {
+      document.body.classList.add("loaded");
+    });
+  </script>
+</body>
+</html>

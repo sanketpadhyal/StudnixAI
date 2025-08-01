@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="assets/favicon.png"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Timer | StudnixAI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo-glass">
+      <div class="logo">
+        <strong>
+          <span class="logo-blue">Studnix</span><span class="logo-red">AI</span> 📘
+        </strong>
+      </div>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="tool.html">Features</a>
+      <a href="https://mail.google.com/mail/?view=cm&to=sanketpadhyal3@gmail.com&su=StudnixAI%20Related%20Mail" target="_blank" class="btn-purple">Contact Us</a>
+    </nav>
+  </header>
+
+<!-- TIMER SECTION -->
+<section class="hero">
+  <div class="hero-left">
+    <h1>⏳ Timer Tool</h1>
+    <p><strong><i>Stay focused with countdowns — powerful & simple timer!</i></strong></p>
+    <div class="btn-group">
+      <a href="app.html" class="btn-dark">Back to Tools</a>
+      <a href="index.html" class="btn-outline">Home</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="glass-card stopwatch-card">
+      <h2 id="timerDisplay">00:00:00</h2>
+      <div class="stopwatch-controls">
+        <button class="btn-green" onclick="startTimer()">Start</button>
+        <button class="btn-red" onclick="pauseTimer()">Pause</button>
+        <button class="btn-blue" onclick="resetTimer()">Reset</button>
+      </div>
+
+      <!-- Input for setting time -->
+      <div class="time-inputs">
+        <input type="number" id="hours" placeholder="HH" min="0" max="99">
+        <input type="number" id="minutes" placeholder="MM" min="0" max="59">
+        <input type="number" id="seconds" placeholder="SS" min="0" max="59">
+      </div>
+      <ul id="timerLog" class="lap-list"></ul>
+    </div>
+  </div>
+</section>
+
+
+
+<script>
+  let timerInterval;
+  let totalSeconds = 0;
+
+  function updateTimerDisplay() {
+    let hrs = Math.floor(totalSeconds / 3600);
+    let mins = Math.floor((totalSeconds % 3600) / 60);
+    let secs = totalSeconds % 60;
+    const format = n => (n < 10 ? '0' + n : n);
+    document.getElementById("timerDisplay").innerText = `${format(hrs)}:${format(mins)}:${format(secs)}`;
+  }
+
+  function startTimer() {
+    if (!timerInterval) {
+      if (totalSeconds === 0) {
+        const h = parseInt(document.getElementById("hours").value) || 0;
+        const m = parseInt(document.getElementById("minutes").value) || 0;
+        const s = parseInt(document.getElementById("seconds").value) || 0;
+        totalSeconds = h * 3600 + m * 60 + s;
+      }
+
+      timerInterval = setInterval(() => {
+        if (totalSeconds > 0) {
+          totalSeconds--;
+          updateTimerDisplay();
+        } else {
+          clearInterval(timerInterval);
+          timerInterval = null;
+          document.getElementById("timerDisplay").innerText = "⏰ TIME'S UP!";
+          logTimerDone();
+        }
+      }, 1000);
+    }
+  }
+
+  function pauseTimer() {
+    clearInterval(timerInterval);
+    timerInterval = null;
+  }
+
+  function resetTimer() {
+    pauseTimer();
+    totalSeconds = 0;
+    updateTimerDisplay();
+    document.getElementById("hours").value = '';
+    document.getElementById("minutes").value = '';
+    document.getElementById("seconds").value = '';
+    document.getElementById("timerDisplay").innerText = "00:00:00";
+    document.getElementById("timerLog").innerHTML = '';
+  }
+
+  function logTimerDone() {
+    const log = document.getElementById("timerLog");
+    const li = document.createElement("li");
+    li.innerText = "✅ Timer completed!";
+    log.appendChild(li);
+  }
+</script>
+
+
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    © 2025 StudnixAI — Built with 💖 by <a href="https://github.com/sanketpadhyal" target="_blank">@sanketpadhyal</a>
+  </footer>
+
+  <script>
+    window.addEventListener("load", () => {
+      document.body.classList.add("loaded");
+    });
+  </script>
+
+</body>
+</html>
