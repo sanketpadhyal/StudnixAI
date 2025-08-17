@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="assets/favicon.png"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ask AI | StudnixAI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+
+  <!-- 🔷 NAVBAR -->
+  <header class="navbar">
+    <div class="logo-glass">
+      <div class="logo">
+        <strong>
+          <span class="logo-blue">Studnix</span><span class="logo-red">AI</span> 📘
+        </strong>
+      </div>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="tool.html">Features</a>
+      <a href="https://mail.google.com/mail/?view=cm&to=sanketpadhyal3@gmail.com&su=StudnixAI%20Related%20Mail" target="_blank" class="btn-purple">Contact Us</a>
+    </nav>
+  </header>
+
+
+  <!-- 💡 HERO SECTION -->
+  <section class="hero">
+    <div class="hero-left">
+      <h1>👻 Ask AI</h1>
+      <p><strong><i>Type your study question and get instant smart answers.</i></strong><br><br>🔐<i><strong> Powered by a secure backend using GPT-3.5 Turbo<br> — enjoy smooth, smart answers built just for students.</i><br></strong><br><strong>No Data is saved. Everything is anonymous — feel free to use it easily! ✅</strong> </p>
+      <div class="btn-group">
+        <a href="app.html" class="btn-dark">Back to Tools</a>
+        <a href="index.html" class="btn-outline">Home</a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="glass-card ai-card">
+        <div id="chatBox" class="chat-box">
+          <!-- User & AI messages will appear here -->
+        </div>
+
+        <div class="ai-input-box">
+        <input
+           type="text"
+           id="userInput"
+           placeholder="Ask your question..."
+           onkeydown="if(event.key === 'Enter') sendQuestion()"
+           style="
+              width: 100%;
+             max-width: 400px;
+             padding: 12px 18px;
+             border-radius: 25px;
+             border: none;
+             outline: none;
+             background: linear-gradient(135deg, #ffffff10, #ffffff05);
+             color: white;
+             font-size: 16px;
+             box-shadow: 0 0 8px #00ffe0a0;
+             transition: all 0.3s ease;
+             backdrop-filter: blur(2px);
+              "
+              onfocus="this.style.boxShadow='0 0 15px #00ffe0cc';"
+              onblur="this.style.boxShadow='0 0 8px #00ffe0a0';"
+           
+           />
+
+          <button onclick="sendQuestion()" style="
+              background: linear-gradient(135deg, #9cf700, #1100ff);
+              border: none;
+              color: #fff;
+              padding: 10px 20px;
+              font-size: 16px;
+              border-radius: 50px;
+              cursor: pointer;
+              transition: all 0.3s ease;
+              font-weight: bold;
+             ">
+               Send 👀
+        </button>
+        </div>
+        <div id="response" class="ai-response-text"></div>
+      </div>
+    </div>
+  </section>
+
+
+<!-- JS sendQuestion function with welcome -->
+<script>
+
+  // Show default welcome message on page load
+  window.addEventListener("DOMContentLoaded", () => {
+    const chatBox = document.getElementById("chatBox");
+
+    const welcomeMsg = document.createElement("div");
+    welcomeMsg.className = "ai-message";
+    welcomeMsg.innerText = "💁‍♀️ AI: Hello! Welcome to the AskAI feature of StudnixAI 📘";
+
+    chatBox.appendChild(welcomeMsg);
+
+    const spacer = document.createElement("div");
+    spacer.className = "message-spacer";
+    chatBox.appendChild(spacer);
+  });
+
+  async function sendQuestion() {
+    const userInput = document.getElementById("userInput").value.trim();
+    const chatBox = document.getElementById("chatBox");
+    const responseDiv = document.getElementById("response");
+
+    if (!userInput) {
+      responseDiv.innerText = "⚠️ Please enter a question.";
+      return;
+    }
+
+// Show user's message
+const userMsg = document.createElement("div");
+userMsg.className = "user-message";
+userMsg.innerText = "🧑 You: " + userInput;
+chatBox.appendChild(userMsg);
+
+// Add spacing after user message
+const userSpacer = document.createElement("div");
+userSpacer.className = "message-spacer";
+chatBox.appendChild(userSpacer);
+
+// Add "AI is typing..." message
+const typingMsg = document.createElement("div");
+typingMsg.className = "ai-typing-message";
+typingMsg.innerText = "typing...";
+chatBox.appendChild(typingMsg);
+
+chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll
+
+try {
+  const res = await fetch("YOUR_API_AND_ASK_CALL", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ prompt: userInput })
+  });
+
+  const data = await res.json();
+  const replyText = data.reply;
+
+  // Remove typing message
+  typingMsg.remove();
+
+  // Show real AI reply
+  const aiMsg = document.createElement("div");
+  aiMsg.className = "ai-message";
+  aiMsg.innerText = "💁‍♀️ AI: " + replyText;
+  chatBox.appendChild(aiMsg);
+
+  // Spacing after AI
+  const aiSpacer = document.createElement("div");
+  aiSpacer.className = "message-spacer";
+  chatBox.appendChild(aiSpacer);
+
+  responseDiv.innerText = ""; // Clear status
+  document.getElementById("userInput").value = "";
+  chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll again
+} catch (err) {
+  typingMsg.remove(); // Remove typing if error
+
+  // Show error as AI message
+  const errorMsg = document.createElement("div");
+  errorMsg.className = "ai-message error";
+  errorMsg.innerText = "❌ Backend is off. Please contact the developer.\n" + err.message;
+  chatBox.appendChild(errorMsg);
+
+  const aiSpacer = document.createElement("div");
+  aiSpacer.className = "message-spacer";
+  chatBox.appendChild(aiSpacer);
+
+  responseDiv.innerText = "";
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+  }
+</script>
+
+<!-- ✅ Optional minimal CSS for spacing -->
+<style>
+  .message-spacer {
+    height: 10px;
+  }
+
+  .ai-typing-message {
+  color: #aaa;
+  font-style: italic;
+  padding-left: 10px;
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+</style>
+
+  <style>
+    .user-message {
+      font-family: 'Segoe UI', sans-serif;
+   font-size: 18px;
+   margin: 6px 0;
+   color: #ffffff;
+   white-space: pre-wrap; /* ensures proper spacing */
+    }
+   
+    .ai-message {
+   font-family: 'Segoe UI', sans-serif;
+   font-size: 18px;
+   margin: 6px 0;
+   color: #22ff00;
+   white-space: pre-wrap; /* ensures proper spacing */
+}
+
+</style>
+
+  <!-- 🔻 FOOTER -->
+  <footer class="footer">
+    © 2025 StudnixAI — Built with 💖 by <a href="https://github.com/sanketpadhyal" target="_blank">@sanketpadhyal</a>
+  </footer>
+
+  <script>
+    window.addEventListener("load", () => {
+      document.body.classList.add("loaded");
+    });
+  </script>
+
+</body>
+</html>
