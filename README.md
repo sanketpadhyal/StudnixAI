@@ -50,7 +50,7 @@ As a student, you switch between tools constantly. StudnixAI brings it all toget
 
 ## 🚀 Try it Live
 
-🔗 [StudnixAI on Netlify]([https://regal-raindrop-7fdaff.netlify.app](https://studnixai.netlify.app)
+🔗 [StudnixAI on Netlify] [TAP HERE!](https://studnixai.netlify.app)
 
 ---
 
