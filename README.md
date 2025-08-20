@@ -1,70 +1,87 @@
-# 📘 StudnixAI – The All-in-One Smart Student Web App
+# 📘 StudnixAI – The All-in-One Smart Student Web App  
 
-Welcome to **StudnixAI**, a sleek and intelligent web-based toolkit made especially for students. Whether you're studying, managing your time, taking notes, or just need a quick answer from AI — StudnixAI is here to help you stay focused, productive, and creative.
+**StudnixAI** is a sleek and intelligent **web-based toolkit for students**.  
+From studying ⏱️ to AI assistance 🤖 — everything you need to stay **productive, focused, and creative** is right here in one place.  
 
-> ⚠️ **Designed specifically for PC and desktop users**. Mobile experience is not supported at the moment.
-
----
-
-## ✨ Key Features
-
-### 🤖 Ask AI (GPT-3.5 Turbo Powered)
-- Instantly get answers to your questions in a clean chat interface.
-- Fully animated, no-glow, blur-free design with real-time AI typing.
-- Secure backend using OpenRouter via Replit.
-
-### ⏱️ Timer & Stopwatch
-- Focus better by tracking your study sessions.
-- Simple and cute layout, perfect for Pomodoro or deep work sessions.
-
-### 🎶 Live Music Tab Display (Coming Soon)
-- Shows currently playing YouTube/Chrome music in real time.
-- Adds a chill vibe to your study flow.
+> ⚠️ **Note:** StudnixAI is currently **optimized for PC/Desktop users only**.  
+📱 Mobile support is **not available yet** (planned for future updates).  
 
 ---
 
-## 🖥️ Optimized for Desktop
-
-This project is built with PC in mind — wide layouts, animations, and features all tailored for large screens.  
-📱 **Mobile support is not available yet**, but planned for future updates.
-
----
-
-## 💡 Why StudnixAI?
-
-As a student, you switch between tools constantly. StudnixAI brings it all together:
-- One site, all your needs.
-- Built with love, care, and attention to design.
-- Fast, secure, and distraction-free.
+![Status](https://img.shields.io/badge/status-Active-brightgreen)  
+![Frontend](https://img.shields.io/badge/Frontend-HTML5%20%7C%20CSS3%20%7C%20JavaScript-orange)  
+![AI](https://img.shields.io/badge/AI-GPT--3.5%20Turbo-blue)  
+![Backend](https://img.shields.io/badge/Backend-OpenRouter%20%7C%20Replit-red)  
+![Hosting](https://img.shields.io/badge/Hosting-Netlify-purple)  
+![Made By](https://img.shields.io/badge/Made%20By-Sanket%20Padhyal-blue)  
+![License](https://img.shields.io/badge/License-Free%20to%20Use-green)  
 
 ---
 
-## 🔧 Tech Stack
+## ✨ Key Features  
 
-- **Frontend:** HTML, CSS (custom animations & styling), JavaScript (vanilla)
-- **AI Backend:** GPT-3.5 Turbo via [OpenRouter](https://openrouter.ai)
-- **Hosting:** Netlify
-- **Backend Handling:** Replit server (securely managing API requests)
+### 🤖 Ask AI (Powered by GPT-3.5 Turbo)  
+- Clean and minimal **chat interface** with real-time AI typing.  
+- Fully animated UI — no glow, blur-free, smooth transitions.  
+- Secure **backend integration** with [OpenRouter](https://openrouter.ai) via Replit.  
 
----
-
-## 🚀 Try it Live
-
-🔗 [StudnixAI on Netlify] [TAP HERE!](https://studnixai.netlify.app)
+### ⏱️ Timer & Stopwatch  
+- Track your **study sessions** with precision.  
+- Lightweight and **cute layout** — perfect for Pomodoro or deep work sessions.  
 
 ---
 
-## 🙋‍♂️ Developer
+## 🖥️ Optimized for Desktop  
 
-Made with ❤️ by **Sanket** – student, builder, and future tech innovator.
-
-> Feedback? Found a bug? Want to collaborate? Reach out via GitHub or drop an issue.
-
----
-
-## 🛡️ License
-
-This project is free to use for educational and personal purposes.
+- Wide layouts designed for **large screens**.  
+- Smooth animations, responsive controls, and elegant design.  
+- 📱 Mobile version is **not available yet** (future release planned).  
 
 ---
 
+## 💡 Why StudnixAI?  
+
+Students often juggle multiple tools. StudnixAI combines them into **one platform**:  
+- ✅ One site for all your needs.  
+- ❤️ Built with care, precision, and focus on user experience.  
+- ⚡ Fast, secure, and distraction-free.  
+
+---
+
+## 🔧 Tech Stack  
+
+- **Frontend:** HTML5, CSS3 (custom animations & styles), JavaScript (vanilla)  
+- **AI Backend:** GPT-3.5 Turbo via **OpenRouter**  
+- **Backend Handling:** Replit server (securely managing API requests)  
+- **Hosting:** Netlify  
+
+---
+
+## 🚀 Live Demo  
+
+🔗 **[StudnixAI on Netlify](https://studnixai.netlify.app)**  
+
+---
+
+## 🙋‍♂️ Developer  
+
+Made with ❤️ and passion by **Sanket Padhyal** —  
+*student, builder, and future tech innovator.*  
+
+💬 Feedback? Found a bug? Want to collaborate?  
+👉 Reach out via GitHub or open an issue.  
+
+---
+
+## 🏷️ Ownership  
+
+Crafted with care by **Sanket Padhyal**.  
+© 2025. All rights reserved.  
+
+---
+
+## 🛡️ License  
+
+This project is **free to use for educational and personal purposes**.  
+
+---
