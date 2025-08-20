@@ -63,6 +63,16 @@ Students often juggle multiple tools. StudnixAI combines them into **one platfor
 
 ---
 
+## 🖼️ Assets  
+
+- Project includes a **background wallpaper (`assets/bg.png`)**.  
+
+![Background Image](assets/bg.png)  
+
+> 💡 Always compress or optimize background images for maximum performance, and fast loading.
+
+---
+
 ## 🙋‍♂️ Developer  
 
 Made with ❤️ and passion by **Sanket Padhyal** —  
