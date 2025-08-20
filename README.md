@@ -86,7 +86,8 @@ Made with ❤️ and passion by **Sanket Padhyal** —
 ## 🏷️ Ownership  
 
 Crafted with care by **Sanket Padhyal**.  
-© 2025. All rights reserved.  
+© 2025. All rights reserved.
+GMAIL = sanketpadhyal3@gmail.com
 
 ---
 
