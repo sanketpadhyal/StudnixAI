@@ -18,6 +18,13 @@ From studying ⏱️ to AI assistance 🤖 — everything you need to stay **pro
 
 ---
 
+# 📢 ALERT: BACKEND IS NOW 24×7 ONLINE 
+
+✅ The **StudnixAI-backend** is now fully hosted on **Render**, which means the project is **available 24×7 without downtime**.  
+⚡ Your experience is smoother, faster, and always active! 
+
+---
+
 ## ✨ Key Features  
 
 ### 🤖 Ask AI (Powered by GPT-3.5 Turbo)  
