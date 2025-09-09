@@ -90,9 +90,7 @@
   </section>
 
 
-<!-- JS sendQuestion function with welcome -->
 <script>
-
   // Show default welcome message on page load
   window.addEventListener("DOMContentLoaded", () => {
     const chatBox = document.getElementById("chatBox");
@@ -108,7 +106,7 @@
     chatBox.appendChild(spacer);
   });
 
-  async function sendQuestion() {
+   async function sendQuestion() {
     const userInput = document.getElementById("userInput").value.trim();
     const chatBox = document.getElementById("chatBox");
     const responseDiv = document.getElementById("response");
@@ -118,69 +116,105 @@
       return;
     }
 
-// Show user's message
-const userMsg = document.createElement("div");
-userMsg.className = "user-message";
-userMsg.innerText = "🧑 You: " + userInput;
-chatBox.appendChild(userMsg);
+    // Show user's message
+    const userMsg = document.createElement("div");
+    userMsg.className = "user-message";
+    userMsg.innerText = "🧑 You: " + userInput;
+    chatBox.appendChild(userMsg);
 
-// Add spacing after user message
-const userSpacer = document.createElement("div");
-userSpacer.className = "message-spacer";
-chatBox.appendChild(userSpacer);
+    const userSpacer = document.createElement("div");
+    userSpacer.className = "message-spacer";
+    chatBox.appendChild(userSpacer);
 
-// Add "AI is typing..." message
-const typingMsg = document.createElement("div");
-typingMsg.className = "ai-typing-message";
-typingMsg.innerText = "typing...";
-chatBox.appendChild(typingMsg);
+    // Add "AI is typing..." message
+    const typingMsg = document.createElement("div");
+    typingMsg.className = "ai-typing-message";
+    typingMsg.innerText = "typing...";
+    chatBox.appendChild(typingMsg);
 
-chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll
+    chatBox.scrollTop = chatBox.scrollHeight;
 
-try {
-  const res = await fetch("YOUR_API_AND_ASK_CALL", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ prompt: userInput })
-  });
+    let wakingMsg = null;
+    let wakingTimer = setTimeout(() => {
+      wakingMsg = document.createElement("div");
+      wakingMsg.className = "ai-message";
+      wakingMsg.style.color = "#ffcc00"; // yellow
+      wakingMsg.innerText = "⏳ Please wait… server is cold starting / waking up.";
+      chatBox.appendChild(wakingMsg);
 
-  const data = await res.json();
-  const replyText = data.reply;
+      const spacer = document.createElement("div");
+      spacer.className = "message-spacer";
+      chatBox.appendChild(spacer);
 
-  // Remove typing message
-  typingMsg.remove();
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }, 4000); // only show waking-up msg if >4s delay
 
-  // Show real AI reply
-  const aiMsg = document.createElement("div");
-  aiMsg.className = "ai-message";
-  aiMsg.innerText = "💁‍♀️ AI: " + replyText;
-  chatBox.appendChild(aiMsg);
+    // Timeout after 50s if no response
+    let timeoutReached = false;
+    const timeoutId = setTimeout(() => {
+      timeoutReached = true;
+      typingMsg.remove();
+      if (wakingMsg) wakingMsg.remove();
 
-  // Spacing after AI
-  const aiSpacer = document.createElement("div");
-  aiSpacer.className = "message-spacer";
-  chatBox.appendChild(aiSpacer);
+      const errorMsg = document.createElement("div");
+      errorMsg.className = "ai-message error";
+      errorMsg.innerText = "❌ Server failed to wake up. Please try again in a few moments.";
+      chatBox.appendChild(errorMsg);
 
-  responseDiv.innerText = ""; // Clear status
-  document.getElementById("userInput").value = "";
-  chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll again
-} catch (err) {
-  typingMsg.remove(); // Remove typing if error
+      const aiSpacer = document.createElement("div");
+      aiSpacer.className = "message-spacer";
+      chatBox.appendChild(aiSpacer);
 
-  // Show error as AI message
-  const errorMsg = document.createElement("div");
-  errorMsg.className = "ai-message error";
-  errorMsg.innerText = "❌ Backend is off. Please contact the developer.\n" + err.message;
-  chatBox.appendChild(errorMsg);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }, 50000);
 
-  const aiSpacer = document.createElement("div");
-  aiSpacer.className = "message-spacer";
-  chatBox.appendChild(aiSpacer);
+    try {
+      const res = await fetch("https://studnixai-backend.onrender.com/ask", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt: userInput })
+      });
 
-  responseDiv.innerText = "";
-  chatBox.scrollTop = chatBox.scrollHeight;
-}
+      clearTimeout(timeoutId);
+      clearTimeout(wakingTimer);
+      if (timeoutReached) return;
 
+      const data = await res.json();
+      const replyText = data.reply;
+
+      typingMsg.remove();
+      if (wakingMsg) wakingMsg.remove();
+
+      const aiMsg = document.createElement("div");
+      aiMsg.className = "ai-message";
+      aiMsg.innerText = "💁‍♀️ AI: " + replyText;
+      chatBox.appendChild(aiMsg);
+
+      const aiSpacer = document.createElement("div");
+      aiSpacer.className = "message-spacer";
+      chatBox.appendChild(aiSpacer);
+
+      responseDiv.innerText = "";
+      document.getElementById("userInput").value = "";
+      chatBox.scrollTop = chatBox.scrollHeight;
+    } catch (err) {
+      clearTimeout(timeoutId);
+      clearTimeout(wakingTimer);
+      typingMsg.remove();
+      if (wakingMsg) wakingMsg.remove();
+
+      const errorMsg = document.createElement("div");
+      errorMsg.className = "ai-message error";
+      errorMsg.innerText = "❌ Backend error. Please try again later.\n" + err.message;
+      chatBox.appendChild(errorMsg);
+
+      const aiSpacer = document.createElement("div");
+      aiSpacer.className = "message-spacer";
+      chatBox.appendChild(aiSpacer);
+
+      responseDiv.innerText = "";
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
   }
 </script>
 
@@ -232,3 +266,4 @@ try {
 
 </body>
 </html>
+
